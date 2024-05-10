@@ -1,42 +1,45 @@
 "use client";
 
 import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
+import HouseMarker from '../components/marker';
 
 const containerStyle = {
   width: '400px',
   height: '400px'
 };
-
+//Todo: get it from database
 const center = {
-  lat: -3.745,
-  lng: -38.523
+  lat: 37.29753497565366,
+  lng: -121.86716724652739
 };
 
 // Mock data: Replace with real data from your backend
 const neighbors = [
-  { lat: -3.745, lng: -38.523 },
-  { lat: -3.745, lng: -38.524 },
-  { lat: -3.745, lng: -38.525 }
+  { lat: 37, lng: -121 },
+  { lat: 37.29753497565366, lng: -121.86716724652739 }
 ];
 
-function Map() {
-    return (
-        process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY ?
-        <LoadScript
-          googleMapsApiKey= {process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}
-        >
-          <GoogleMap
-            mapContainerStyle={containerStyle}
-            center={center}
-            zoom={10}
-          >
-            {neighbors.map((location, index) => (
-              <Marker key={index} position={location} />
-            ))}
-          </GoogleMap>
-        </LoadScript>
-        : <>cannot display api key</>
-      );
-}
+const mapOptions = {
+  mapId: process.env.NEXT_PUBLIC_GOOGLE_MAP_ID, // Replace 'YOUR_MAP_ID_HERE' with your actual map ID
+  // Include other map options here as needed
+};
 
-export default Map;
+export default function Map() {
+  return (
+    process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY &&
+    <LoadScript
+      googleMapsApiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}
+    >
+      <GoogleMap
+        mapContainerStyle={containerStyle}
+        center={center}
+        zoom={17}
+        options={mapOptions}
+      >
+        {neighbors.map((location, index) => (
+          <HouseMarker key= {index} position={location} />
+        ))}
+      </GoogleMap>
+    </LoadScript>
+  );
+};

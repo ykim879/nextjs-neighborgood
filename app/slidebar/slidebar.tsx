@@ -9,8 +9,8 @@ const Sidebar: React.FC = () => {
         <h2>Menu</h2>
       </div>
       <div style={{ padding: '20px', borderBottom: '1px solid #ddd', textAlign: 'center' }}>
-        <Image src="/path-to-your-profile-image.jpg" alt="Profile Picture" width={80} height={80} />
-        <p>Jane Melwin</p>
+        {/*<Image src="/path-to-your-profile-image.jpg" alt="Profile Picture" width={80} height={80} />*/}
+        <p>Jane Melwik</p>
         <p>janemelvin@gmail.com</p>
       </div>
       <div style={{ padding: '20px' }}>
