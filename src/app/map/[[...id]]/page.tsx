@@ -1,8 +1,7 @@
+import React from 'react';
 
 import Map from "@/src/components/Map/map";
-import SideView from "@/src/components/sideview/sideview";
-import { Location } from "../../../types/location";
-import { useState } from "react";
+import SideView from '@/src/components/sideview/sideview';
 
 export default function NeighborGoodMapView({ params }: {
   params: {
@@ -13,11 +12,11 @@ export default function NeighborGoodMapView({ params }: {
   const goodId = params.id?.length > 1 ? params?.id[1] : null
 
   return (
-    <div className="flex p-4">
-      <div className="flex-1">
+    <div className="flex p-4 h-screen">
+      <div className="flex-1 p-30 h-full">
         <Map/>
       </div>
-      <div className="w-80">
+      <div className="w-100">
         <SideView neighborhoodid={neighborhoodid} goodId={goodId} />
       </div>
     </div>

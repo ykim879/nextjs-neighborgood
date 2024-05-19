@@ -4,8 +4,8 @@ import { GoogleMap, LoadScript } from '@react-google-maps/api';
 import HouseMarker from '../marker';
 
 const containerStyle = {
-  width: '100%',
-  height: '100%'
+  width: '800px',
+  height: '800px'
 };
 //Todo: get it from database
 const center = {
@@ -27,9 +27,12 @@ const mapOptions = {
 interface MapComponentProps {
 }
 
- const Map: React.FC<MapComponentProps> = () =>{
+const Map: React.FC<MapComponentProps> = () => {
+  if (!process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY) {
+    console.error('Google Maps API key is missing');
+    return <div>Error: Google Maps API key is missing</div>;
+  }
   return (
-    process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY &&
     <LoadScript
       googleMapsApiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}
     >
@@ -40,7 +43,7 @@ interface MapComponentProps {
         options={mapOptions}
       >
         {neighbors.map((location, index) => (
-          <HouseMarker key= {index} position={location} nav='/map/1'/>
+          <HouseMarker key={index} position={location} nav='/map/1' />
         ))}
       </GoogleMap>
     </LoadScript>

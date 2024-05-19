@@ -106,7 +106,7 @@ const SideView: React.FC<SideViewProps> = ({neighborhoodid, goodId }) => {
 
     //Todo: click join action
     return (
-        <div className="border rounded-lg p-4 bg-white shadow-lg h-full w-30 flex flex-col">
+        <div className="border rounded-lg p-4 bg-white shadow-lg h-full w-full flex flex-col">
       {neighbor && (
         <div className="flex flex-col mb-4" style={{ height: '30%' }}>
           <div className="flex items-center mb-4">
