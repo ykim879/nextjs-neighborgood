@@ -1,4 +1,4 @@
-interface Good {
+export interface Good {
     id: string;
     name: string;
     img?: string;
