@@ -3,8 +3,9 @@ import { IGood } from '@/src/models/good';
 import React, { useState } from 'react';
 import { uuid } from 'uuidv4';
 import { user } from '@/src/types/mockdata';
+import { convertToBase64 } from '@/src/services/utils';
 const PostMyGoodPage: React.FC = () => {
-  const [image, setImage] = useState<string| ArrayBuffer | null>("");
+  const [img, setImage] = useState<string| ArrayBuffer | null>("");
   const [type, setType] = useState<'event' | 'product'>('product');
   const [header, setHeader] = useState('');
   const [description, setDescription] = useState('');
@@ -13,13 +14,11 @@ const PostMyGoodPage: React.FC = () => {
   const [eventDateFrom, setEventDateFrom] = useState('');
   const [eventDateTo, setEventDateTo] = useState('');
 
-  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleImageChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setImage(reader.result);
-      };
+      const base64 = await convertToBase64(file);
+      setImage(base64);
     }
   };
 
@@ -28,7 +27,9 @@ const PostMyGoodPage: React.FC = () => {
 
     let formData:IGood = {id: uuid(), name: header, description, cost,
       neighborhoodId: user.id, type, zipCode: user.zipcode}// Todo replace with user
-
+    if (img != null) {
+      formData.img = img as string;
+    }
     if (type === 'event') {
       formData.effective_from = new Date(eventDateFrom);
       formData.effective_to = new Date(eventDateTo);
@@ -55,8 +56,8 @@ const PostMyGoodPage: React.FC = () => {
     <div className="flex h-screen w-full p-4">
       <div className="w-1/2 p-4">
         <div className="w-full h-1/2 bg-gray-200 flex items-center justify-center">
-          {image ? (
-            <img src={image as string} alt="Selected" className="w-full h-full object-cover" />
+          {img ? (
+            <img src={img as string} alt="Selected" className="w-full h-full object-cover" />
           ) : (
             <span>Default Image</span>
           )}
