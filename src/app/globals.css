@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+:root {
+  /* Primary palette */
+  --background: #F4DFD0;
+  --color-primary-light: #837ae5;
+  --color-primary-dark: #32197c;
+
+  /* Accent palette */
+  --color-accent: #d8d4c9;
+  --color-accent-light: #ffd074;
+  --color-accent-dark: #c68400;
+
+  /* Neutral palette */
+  --color-neutral-light: #cdc8bb;
+  --color-neutral: #cdc8bb;
+  --color-neutral-dark: #a1a1a1;
+
+  /* Semantic colors for common use cases */
+  --color-success: #28a745;
+  --color-info: #17a2b8;
+  --color-warning: #ffc107;
+  --color-danger: #dc3545;
+}
+html, body, #root {
+  height: 100%;
+  overflow: hidden;
+}

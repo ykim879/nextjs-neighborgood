@@ -1,0 +1,33 @@
+/* Sidebar.module.css */
+.sidebar {
+    width: 250px;
+    height: 100%;
+    padding: 20px;
+  }
+  
+  .menuHeader {
+    padding: 20px;
+    borderBottom: '1px solid #ddd';
+  }
+  
+  .profileSection {
+    padding: 20px;
+    borderBottom: '1px solid #ddd';
+    textAlign: 'center';
+  }
+  
+  .button {
+    marginBottom: '10px';
+  }
+  
+  .link {
+    padding: '10px 20px';
+    display: 'block';
+    /* Add any additional styles for your links here */
+  }
+  
+  /* You can add hover effects, active states, etc., for your links as well */
+  .link:hover {
+    background-color: #f0f0f0;
+  }
+  
