@@ -1,5 +1,5 @@
 import { v4 as uuidv4 } from 'uuid';
-import mongoose, { Document, Schema } from 'mongoose';
+import mongoose, { Schema } from 'mongoose';
 
 export interface IGood {
   id: string;

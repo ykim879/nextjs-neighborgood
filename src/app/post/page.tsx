@@ -2,7 +2,7 @@
 import { IGood } from '@/src/models/good';
 import React, { useState } from 'react';
 import { uuid } from 'uuidv4';
-
+import { user } from '@/src/types/mockdata';
 const PostMyGoodPage: React.FC = () => {
   const [image, setImage] = useState<string| ArrayBuffer | null>("");
   const [type, setType] = useState<'event' | 'product'>('product');
@@ -27,7 +27,7 @@ const PostMyGoodPage: React.FC = () => {
     e.preventDefault();
 
     let formData:IGood = {id: uuid(), name: header, description, cost,
-      neighborhoodId: '1', type, zipCode: 95125}// Todo replace with user
+      neighborhoodId: user.id, type, zipCode: user.zipcode}// Todo replace with user
 
     if (type === 'event') {
       formData.effective_from = new Date(eventDateFrom);
