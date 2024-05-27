@@ -1,5 +1,6 @@
 import React from 'react';
-import ListBox from '../listbox/listbox';
+import ListBox from '../listview/listbox';
+import { goods } from '@/src/types/mockdata';
 
 interface SideViewProps {
     neighborhoodid: String | null;
@@ -20,89 +21,6 @@ const SideView: React.FC<SideViewProps> = ({neighborhoodid, goodId }) => {
         description: 'A bustling area with lots of shops and restaurants.',
       } 
     //Todo fetch goodId if goodId exists
-    const goods: Good[] = [
-        {
-          id: '1',
-          name: 'Fresh Vegetables',
-          img: 'https://example.com/vegetables.jpg',
-          description: 'A variety of fresh vegetables available.',
-          cost: '$20',
-          available_count: 15,
-          neighborhoodId: '1',
-          type: 'produce',
-        },
-        {
-          id: '2',
-          name: 'Organic Fruits',
-          img: 'https://example.com/fruits.jpg',
-          description: 'A variety of organic fruits available.',
-          cost: '$30',
-          available_count: 8,
-          neighborhoodId: '2',
-          type: 'produce',
-        },
-        {
-          id: '3',
-          name: 'Artisan Bread',
-          img: 'https://example.com/bread.jpg',
-          description: 'Freshly baked artisan bread.',
-          cost: '$10',
-          available_count: null,
-          neighborhoodId: '3',
-          type: 'bakery',
-        },
-        {
-          id: '4',
-          name: 'Homemade Jam',
-          img: 'https://example.com/jam.jpg',
-          description: 'Delicious homemade jam made from local fruits.',
-          cost: '$5',
-          available_count: 20,
-          neighborhoodId: '1',
-          type: 'preserves',
-        },
-        {
-          id: '5',
-          name: 'Free-Range Eggs',
-          img: 'https://example.com/eggs.jpg',
-          description: 'Farm fresh free-range eggs.',
-          cost: '$12',
-          available_count: 30,
-          neighborhoodId: '2',
-          type: 'dairy',
-        },
-        {
-          id: '6',
-          name: 'Local Honey',
-          img: 'https://example.com/honey.jpg',
-          description: 'Pure and natural local honey.',
-          cost: '$15',
-          available_count: 10,
-          neighborhoodId: '3',
-          type: 'preserves',
-        },
-        {
-          id: '7',
-          name: 'Craft Beer',
-          img: 'https://example.com/beer.jpg',
-          description: 'Locally brewed craft beer.',
-          cost: '$25',
-          available_count: 50,
-          neighborhoodId: '4',
-          type: 'beverages',
-        },
-        {
-          id: '8',
-          name: 'Gourmet Cheese',
-          img: 'https://example.com/cheese.jpg',
-          description: 'A selection of gourmet cheeses.',
-          cost: '$40',
-          available_count: 5,
-          neighborhoodId: '5',
-          type: 'dairy',
-        },
-      ];
-      
 
     //Todo: click join action
     return (

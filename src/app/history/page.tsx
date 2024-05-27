@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { FaEdit } from 'react-icons/fa';
 import { Order } from '@/src/types/order';
-import { Good } from '@/src/types/good';
 import HorizontalSlideRow from '@/src/components/horizontalsliderow';
 import { goods } from '@/src/types/mockdata';
 

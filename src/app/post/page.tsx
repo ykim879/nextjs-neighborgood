@@ -30,7 +30,7 @@ const PostMyGoodPage: React.FC = () => {
   return (
     <div className="flex h-screen w-full p-4">
       <div className="w-1/2 p-4">
-        <div className="w-full h-64 bg-gray-200 flex items-center justify-center">
+        <div className="w-full h-1/2 bg-gray-200 flex items-center justify-center">
           {image ? (
             <img src={image as string} alt="Selected" className="w-full h-full object-cover" />
           ) : (
@@ -41,7 +41,7 @@ const PostMyGoodPage: React.FC = () => {
           <span className="sr-only">Choose image</span>
           <input
             type="file"
-            className="block w-50 h-50 text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
+            className="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
             onChange={handleImageChange}
           />
         </label>

@@ -1,6 +1,6 @@
-import { Good } from "./good";
+import { IGood } from "../models/good";
 
-export const goods: Good[] = [
+export const goods: IGood[] = [
     {
       id: '1',
       name: 'Fresh Vegetables',

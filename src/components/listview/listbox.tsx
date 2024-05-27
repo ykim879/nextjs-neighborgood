@@ -1,7 +1,8 @@
+import { IGood } from '@/src/models/good';
 import React from 'react';
 
 type ListBoxProps = {
-  good: Good | undefined
+  good: IGood | undefined
 };
 
 const ListBox: React.FC<ListBoxProps> = ({good}) => {

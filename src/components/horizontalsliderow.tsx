@@ -1,9 +1,9 @@
 import React from 'react';
 import { Order } from '../types/order';
-import { Good } from '../types/good';
+import { IGood } from '../models/good';
 
 interface HorizontalSlideRowProps {
-  good: Good;
+  good: IGood;
   orders: Order[];
 }
 
