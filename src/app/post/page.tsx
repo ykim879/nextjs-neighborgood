@@ -1,13 +1,15 @@
 "use client";
+import { IGood } from '@/src/models/good';
 import React, { useState } from 'react';
+import { uuid } from 'uuidv4';
 
 const PostMyGoodPage: React.FC = () => {
-  const [image, setImage] = useState<string | ArrayBuffer | null>(null);
+  const [image, setImage] = useState<string| ArrayBuffer | null>("");
   const [type, setType] = useState<'event' | 'product'>('product');
   const [header, setHeader] = useState('');
   const [description, setDescription] = useState('');
-  const [cost, setCost] = useState<number | ''>('');
-  const [availableCount, setAvailableCount] = useState<number | ''>('');
+  const [cost, setCost] = useState<number>(0);
+  const [availableCount, setAvailableCount] = useState<number>(0);
   const [eventDateFrom, setEventDateFrom] = useState('');
   const [eventDateTo, setEventDateTo] = useState('');
 
@@ -18,13 +20,35 @@ const PostMyGoodPage: React.FC = () => {
       reader.onloadend = () => {
         setImage(reader.result);
       };
-      reader.readAsDataURL(file);
     }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle the form submission logic here
+
+    let formData:IGood = {id: uuid(), name: header, description, cost,
+      neighborhoodId: '1', type, zipCode: 95125}// Todo replace with user
+
+    if (type === 'event') {
+      formData.effective_from = new Date(eventDateFrom);
+      formData.effective_to = new Date(eventDateTo);
+    } else {
+      formData.available_count = availableCount;
+    }
+
+    const response = await fetch('http://localhost:3000/api/goods', {
+      method: 'POST',
+      headers: {
+        "Content-type": "application/json"
+      },
+      body: JSON.stringify(formData),
+    });
+
+    if (response.ok) {
+      alert('Good created successfully!');
+    } else {
+      alert('Failed to create good.');
+    }
   };
 
   return (

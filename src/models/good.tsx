@@ -6,10 +6,10 @@ export interface IGood {
   name: string;
   img?: string;
   description: string;
-  cost: string;
-  available_count: number | null;
+  cost: number;
+  available_count?: number;
   effective_from?: Date;
-  effective_to?: string;
+  effective_to?: Date;
   neighborhoodId: string;
   type: string;
   zipCode?: number;
@@ -24,10 +24,10 @@ const goodSchema: Schema = new Schema({
   name: { type: String, required: true },
   img: { type: String },
   description: { type: String, required: true },
-  cost: { type: String, required: true },
+  cost: { type: Number, required: true },
   available_count: { type: Number, default: null },
   effective_from: { type: Date },
-  effective_to: { type: String },
+  effective_to: { type: Date },
   neighborhoodId: { type: String, required: true },
   type: { type: String, required: true },
   zipCode: { type: Number, required: false }

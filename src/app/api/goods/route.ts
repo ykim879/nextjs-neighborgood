@@ -28,4 +28,3 @@ export async function POST(req: NextRequest) {
     return  NextResponse.json({ message: error }, { status: 400 });
   }
 };
-
