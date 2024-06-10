@@ -1,5 +1,5 @@
 "use client";
-
+import React, { memo } from 'react';
 import { GoogleMap, LoadScript } from '@react-google-maps/api';
 import HouseMarker from '../marker';
 import { user } from '@/src/types/mockdata';
@@ -21,7 +21,7 @@ interface MapComponentProps {
   onMarkerClick: (neighborId: string) => void;
 }
 
-const Map: React.FC<MapComponentProps> = () => {
+const Map: React.FC<MapComponentProps> = ({onMarkerClick}) => {
   if (!process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY) {
     console.error('Google Maps API key is missing');
     return <div>Error: Google Maps API key is missing</div>;
@@ -37,11 +37,11 @@ const Map: React.FC<MapComponentProps> = () => {
         options={mapOptions}
       >
         {neighbors.map((neighbor, index) => (
-          <HouseMarker key={index} position={neighbor.position} nav='/map/1' />
+          <HouseMarker key={index} position={neighbor.position} onClick= {() => onMarkerClick(neighbor.id)}/>
         ))}
       </GoogleMap>
     </LoadScript>
   );
 };
 
-export default Map;
+export default memo(Map);

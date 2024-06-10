@@ -24,7 +24,7 @@ export default function NeighborGoodMapView({ params }: {
   
   const handleMarkerClick = (neighborId: string) => {
     setSelectedNeighborId(neighborId);
-    window.location.href = `/map/${neighborId}`; 
+    //window.location.href = `/map/${neighborId}`; 
   };
   return (
     <div className="flex p-4 h-screen">

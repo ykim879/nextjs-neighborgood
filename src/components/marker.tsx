@@ -1,7 +1,7 @@
 "use client";
+import React, { memo } from 'react';
 import { Marker } from '@react-google-maps/api';
 import { Location } from '../types/location';
-import { useRouter } from 'next/navigation'
 
 const customIcon = {
   url: 'icons/marker.png',
@@ -13,13 +13,12 @@ const customIcon = {
 interface HouseMarkerProps {
   position: Location;
   key: React.Key;
-  nav: string;
+  onClick: () => void;
 }
 //todo: onclick
-const HouseMarker: React.FC<HouseMarkerProps> = ({ position, nav }) => {
-  const router = useRouter()
+const HouseMarker: React.FC<HouseMarkerProps> = ({ position, onClick }) => {
 
-  return <Marker position={position} icon={customIcon} onClick={() => router.push(nav)}/>;
+  return <Marker gmpClickable= {true} position={position} icon={customIcon} onClick={onClick}/>;
 }
 
-export default HouseMarker;
+export default memo(HouseMarker);
