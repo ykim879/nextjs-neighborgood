@@ -1,10 +1,8 @@
-import { SessionProvider } from 'next-auth/react';
-import { AppProps } from 'next/app';
 
-export default function Home({ Component, pageProps: { session, ...pageProps } }: AppProps<{ session: any }>) {
+import NeighborGoodMapView from './map/[[...id]]/page';
+
+export default function Home() {
   return (
-    <SessionProvider session={session}>
-      <Component {...pageProps} />
-    </SessionProvider>
+      <NeighborGoodMapView params = {null}/>
   );
 }
