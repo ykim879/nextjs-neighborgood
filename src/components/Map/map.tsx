@@ -3,14 +3,11 @@ import React, { memo } from 'react';
 import { GoogleMap, LoadScript } from '@react-google-maps/api';
 import HouseMarker from '../marker';
 import { user } from '@/src/types/mockdata';
+import { INeighbor } from '@/src/models/neighbor';
 const containerStyle = {
   width: '800px',
   height: '800px'
 };
-
-// Mock data: Replace with real data from your backend
-const neighbors = [ user
-];
 
 const mapOptions = {
   mapId: process.env.NEXT_PUBLIC_GOOGLE_MAP_ID, // Replace 'YOUR_MAP_ID_HERE' with your actual map ID
@@ -19,9 +16,10 @@ const mapOptions = {
 
 interface MapComponentProps {
   onMarkerClick: (neighborId: string) => void;
+  neighbors: INeighbor[];
 }
 
-const Map: React.FC<MapComponentProps> = ({onMarkerClick}) => {
+const Map: React.FC<MapComponentProps> = ({neighbors, onMarkerClick}) => {
   if (!process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY) {
     console.error('Google Maps API key is missing');
     return <div>Error: Google Maps API key is missing</div>;
