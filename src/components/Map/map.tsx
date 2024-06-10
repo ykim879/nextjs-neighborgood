@@ -2,15 +2,15 @@
 
 import { GoogleMap, LoadScript } from '@react-google-maps/api';
 import HouseMarker from '../marker';
-
+import { user } from '@/src/types/mockdata';
 const containerStyle = {
   width: '800px',
   height: '800px'
 };
 //Todo: get it from database
 const center = {
-  lat: 37.29753497565366,
-  lng: -121.86716724652739
+  lat: user.lat,
+  lng: user.lng
 };
 
 // Mock data: Replace with real data from your backend
@@ -25,6 +25,7 @@ const mapOptions = {
 };
 
 interface MapComponentProps {
+  onMarkerClick: (neighborId: string) => void;
 }
 
 const Map: React.FC<MapComponentProps> = () => {
