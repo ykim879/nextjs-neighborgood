@@ -33,10 +33,15 @@ export const goods: IGood[] = [
     }
   ];
 export const user : INeighbor = {
-  id : '1',
+  id : 'neighbor123',
   name: 'John Doe',
   img: 'http://example.com/image.png',
   headline: 'Friendly Neighbor',
   description: 'John is a very friendly neighbor who always helps others.',
-  zipcode: 95125
+  zipcode: 95125,
+  position: {
+    lat: 37.29753497565366,
+    lng: -121.86716724652739
+}
+
 };

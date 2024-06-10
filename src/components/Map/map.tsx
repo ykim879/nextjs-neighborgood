@@ -7,16 +7,9 @@ const containerStyle = {
   width: '800px',
   height: '800px'
 };
-//Todo: get it from database
-const center = {
-  lat: user.lat,
-  lng: user.lng
-};
 
 // Mock data: Replace with real data from your backend
-const neighbors = [
-  { lat: 37, lng: -121 },
-  { lat: 37.29753497565366, lng: -121.86716724652739 }
+const neighbors = [ user
 ];
 
 const mapOptions = {
@@ -39,12 +32,12 @@ const Map: React.FC<MapComponentProps> = () => {
     >
       <GoogleMap
         mapContainerStyle={containerStyle}
-        center={center}
+        center={user.position}
         zoom={17}
         options={mapOptions}
       >
-        {neighbors.map((location, index) => (
-          <HouseMarker key={index} position={location} nav='/map/1' />
+        {neighbors.map((neighbor, index) => (
+          <HouseMarker key={index} position={neighbor.position} nav='/map/1' />
         ))}
       </GoogleMap>
     </LoadScript>

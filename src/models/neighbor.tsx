@@ -9,6 +9,10 @@ export interface INeighbor {
     description: string;
     //todo location
     zipcode: number;
+    position: {
+      lat: number;
+      lng: number;
+    };
   }
 
 const NeighborSchema: Schema = new Schema({
@@ -22,6 +26,10 @@ const NeighborSchema: Schema = new Schema({
     headline: { type: String, required: true },
     description: { type: String, required: true },
     zipcode: { type: Number, required: true },
+    position: {
+      lat: { type: Number, required: true },
+      lng: { type: Number, required: true },
+    }
   });
   
   // Create and export the Neighbor model
