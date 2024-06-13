@@ -28,3 +28,25 @@ export async function POST(req: NextRequest) {
     return  NextResponse.json({ message: error }, { status: 400 });
   }
 };
+
+export async function GET(req: NextRequest) {
+    try {
+        await connectDB();
+        const { searchParams } = new URL(req.url);
+        const neighborhoodId = searchParams.get('neighborhoodId');
+
+        if (!neighborhoodId) {
+            return NextResponse.json({ message: "neighborhoodId query parameter is required" }, { status: 400 });
+        }
+
+        const goods = await Good.find({ neighborhoodId });
+
+        if (goods.length === 0) {
+            return NextResponse.json({ message: "No goods found for the given neighborhoodId" }, { status: 404 });
+        }
+
+        return NextResponse.json(goods, { status: 200 });
+    } catch (error) {
+        return NextResponse.json({ message: error }, { status: 500 });
+    }
+}

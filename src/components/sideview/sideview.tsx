@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import ListBox from '../listview/listbox';
-import { goods } from '@/src/types/mockdata';
+import { INeighbor } from '@/src/models/neighbor';
+import { IGood } from '@/src/models/good';
 
 interface SideViewProps {
     neighborhoodid: String | null;
@@ -9,18 +10,47 @@ interface SideViewProps {
 
 
 const SideView: React.FC<SideViewProps> = ({neighborhoodid, goodId }) => {
-    if (neighborhoodid == null) {
-        return null;
-    }
-    //Todo: fetch neighbor data by neighborhoodId
-    const neighbor = {
-        id: '1',
-        name: 'Downtown',
-        img: 'https://example.com/avatar1.jpg',
-        headline: 'Heart of the city',
-        description: 'A bustling area with lots of shops and restaurants.',
-      } 
-    //Todo fetch goodId if goodId exists
+  const [neighbor, setNeighbor] = useState<INeighbor | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [goods, setGoods] = useState<IGood[]>([]);
+  useEffect(() => {
+    const fetchData = async () => {
+      if (neighborhoodid) {
+        setLoading(true);
+        try {
+          // Fetch neighbor data
+          const neighborResponse = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/neighbor?id=${neighborhoodid}`);
+          if (!neighborResponse.ok) {
+            throw new Error('Failed to fetch neighbor');
+          }
+          const neighborData = await neighborResponse.json();
+          setNeighbor(neighborData);
+
+          // Fetch goods data
+          const goodsResponse = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/goods?neighborhoodId=${neighborhoodid}`);
+          if (!goodsResponse.ok) {
+            throw new Error('Failed to fetch goods');
+          }
+          const goodsData = await goodsResponse.json();
+          setGoods(goodsData);
+        } catch (error) {
+          console.error('Error fetching data for', neighborhoodid, error);
+        } finally {
+          setLoading(false);
+        }
+      }
+    };
+
+    fetchData();
+  }, [neighborhoodid]);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (neighborhoodid == null || neighbor == null) {
+    return null;
+  }
 
     //Todo: click join action
     return (

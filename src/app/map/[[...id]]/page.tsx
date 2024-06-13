@@ -47,6 +47,7 @@ export default function NeighborGoodMapView({ params }: {
   };
 
   if (loading) {
+    //Todo: make loading page
     return <div>Loading...</div>;
   }
 
@@ -56,7 +57,7 @@ export default function NeighborGoodMapView({ params }: {
         <Map neighbors={neighbors} onMarkerClick={handleMarkerClick} />
       </div>
       <div className="w-100">
-        <SideView neighborhoodid={neighborhoodid} goodId={goodId} />
+        {neighborhoodid && <SideView neighborhoodid={neighborhoodid} goodId={goodId} />}
       </div>
     </div>
   );

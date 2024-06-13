@@ -33,7 +33,7 @@ export const goods: IGood[] = [
     }
   ];
 export const user : INeighbor = {
-  id : 'neighbor123',
+  id : '4b6458f8-8ee7-4649-ae0e-8f42b5d13a2f',
   name: 'John Doe',
   img: 'http://example.com/image.png',
   headline: 'Friendly Neighbor',
